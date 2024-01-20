@@ -1,16 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
-// Remove the following line
-// const bodyParser = require('body-parser');
+const cors = require('cors'); // Import CORS middleware
 const verifyRoutes = require('./routes/verify');
+const exampleMiddleware = require('./middleware'); // Import example middleware
 
 const app = express();
 const port = 3000;
 
-mongoose.connect('mongodb+srv://ameysurve456:nigga123@cluster0.5ojpm5g.mongodb.net/VIDEOTUBE', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect('mongodb://localhost/votingdata', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 
@@ -22,11 +19,16 @@ db.once('open', () => {
   console.log('Connected to MongoDB successfully');
 });
 
-// Replace the following line
-// app.use(bodyParser.json());
-// with
+// Use the built-in JSON parsing middleware
 app.use(express.json());
 
+// Use CORS middleware (place it before defining routes)
+app.use(cors());
+
+// Use example middleware if needed
+app.use(exampleMiddleware);
+
+// Use your custom middleware
 app.use('/api', verifyRoutes);
 
 app.listen(port, () => {
