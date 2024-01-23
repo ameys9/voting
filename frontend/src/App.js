@@ -3,13 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from './LoginPage.js';
 import UserDataPage from './UserDataPage.js';
 import PartyListPage from './PartyListPage.js';
+import { Nothing } from './nothing.js';
 
 const App = () => {
-  const [voteCounter, setVoteCounter] = useState(0);
+  
 
-  const handleVote = () => {
-    setVoteCounter(voteCounter + 1);
-  };
+  
 
   return (
     <Router>
@@ -17,11 +16,15 @@ const App = () => {
         <Route path="/" element={<LoginPage />} />
         <Route
           path="/user-data"
-          element={<UserDataPage handleVote={handleVote} />}
+          element={<UserDataPage />}
         />
         <Route
           path="/party-list"
-          element={<PartyListPage voteCounter={voteCounter} />}
+          element={<PartyListPage  />}
+        />
+        <Route
+          path="/alreadyVoted"
+          element={<Nothing />}
         />
       </Routes>
     </Router>

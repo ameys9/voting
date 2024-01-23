@@ -5,7 +5,7 @@ const voterSchema = new mongoose.Schema({
   phoneNumber: String,
   age: Number,
   residence: String,
-  dob: Date,
+  dob: String,
   photo: String,
   hasVoted: Boolean,
 });

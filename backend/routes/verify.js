@@ -2,7 +2,7 @@ const Voter = require('../models/voter');
 const router = require("express").Router();
 
 // Define the route handling logic for the "/verify" endpoint
-router.post('/verify', async (req, res) => {
+router.post('/api//verify', async (req, res) => {
   const { voterId, phoneNumber } = req.body;
 
   try {
